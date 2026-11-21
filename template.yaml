@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  WordCountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: app/
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+      Events:
+        WordCountApi:
+          Type: Api
+          Properties:
+            Path: /word-count
+            Method: post
